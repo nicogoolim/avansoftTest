@@ -6,8 +6,9 @@ class Dealership
 private:
 	std::vector<std::shared_ptr<Car>> availableCars;
 
-	
+
 public:
+
 	Dealership()
 	{
 		for (int i = 0; i < 10; i++)
@@ -21,7 +22,7 @@ public:
 		{
 			std::cout << *availableCars[i];
 		}
-		
+
 	}
 	std::vector<std::shared_ptr<Car>> filterAvailableCarsByPrice(int price) const
 	{
@@ -49,9 +50,9 @@ public:
 		return filteredCars;
 	}
 
-	void showFilteredCars(std::vector<std::shared_ptr<Car>> filteredCars)
+	void showFilteredCars(std::vector<std::shared_ptr<Car>> filteredCars) const
 	{
-		if (filteredCars.size()!=0)
+		if (!filteredCars.empty())
 		{
 			for (int i = 0; i < filteredCars.size(); i++)
 			{
@@ -62,6 +63,16 @@ public:
 		{
 			std::cout << "Нет машин удовлетворяющих условию." << std::endl;
 		}
-		
+
+	}
+	std::shared_ptr<Car> sellCar(int CarId)
+	{
+		std::shared_ptr<Car> carForSale;
+		auto iter = std::find_if(availableCars.begin(), availableCars.end(), [&](std::shared_ptr<Car> car) {return car->getId() == CarId; });
+
+		carForSale = *iter;
+		availableCars.erase(iter);
+
+		return carForSale;
 	}
 };

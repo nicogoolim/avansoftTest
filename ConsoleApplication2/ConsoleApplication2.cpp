@@ -12,7 +12,6 @@ int main()
 {
 	setlocale(LC_ALL, "rus");
 	Dealership Shop;
-	Shop.showFilteredCars(Shop.filterAvailableCarsByBrand("BW"));
 
-
+	Shop.showFilteredCars(Shop.filterAvailableCarsByBrand("BMW"));
 }
