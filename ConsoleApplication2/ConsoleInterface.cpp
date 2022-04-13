@@ -1,8 +1,15 @@
 #include "ConsoleInterface.h"
-
 #include "Filter.h"
 
-ConsoleInterface::ConsoleInterface(Dealership shop, Buyer buyer) : Shop(shop), buyer(buyer) {};
+ConsoleInterface::ConsoleInterface(std::shared_ptr<Dealership> shop, std::shared_ptr<Buyer> buyer)
+{
+	this->Shop = shop;
+	this->buyer = buyer;
+	
+}
+
+
+
 bool isNumber(const std::string& str)
 {
 	for (char const& c : str) {
@@ -48,7 +55,7 @@ void ConsoleInterface::start()
 		{
 			std::cout << "Команда не найдена в списке." << std::endl;
 		}
-		
+		help();
 		std::cout << std::endl;
 	}
 }
@@ -70,62 +77,54 @@ void ConsoleInterface::filterCars()
 {
 	std::string choose;
 	std::vector<std::shared_ptr<Car>> filteredCars;
+	
 	std::cout << "Доступны фильтры по:" << std::endl
 		<< "1. По цене" << std::endl
 		<< "2. По марке" << std::endl;
+
 	std::cout << "Фильтр:";
 	std::cin >> choose;
 	std::cout << std::endl;
-		if (isNumber(choose) && std::stoi(choose) == 1)
-		{
-			int maxPrice;
-			std::cout << "Введите максимальную цену:";
-			std::cin >> maxPrice;
-			filteredCars = FilterCars::filterCarsByPrice(Shop.getAvailableCars(), maxPrice);
-		}
-		else if (isNumber(choose) &&  std::stoi(choose) == 2)
-		{
-			std::string brand;
-			std::cout << "Введите бренд:";
-			std::cin >> brand;
-			filteredCars = FilterCars::filterCarsByBrand(Shop.getAvailableCars(), brand);
-		}
-		else
-		{
-			std::cout << "Не понял вашей команды."<<std::endl;
-			return;
-		}
+
+	if (isNumber(choose) && std::stoi(choose) == 1)
+	{
+		filteredCars = FilterCars::filterCarsByPrice(Shop->getAvailableCars());
+	}
+	else if (isNumber(choose) &&  std::stoi(choose) == 2)
+	{
+		filteredCars = FilterCars::filterCarsByBrand(Shop->getAvailableCars());
+	}
+	else
+	{
+		std::cout << "Не понял вашей команды."<<std::endl;
+		return;
+	}
+
 	std::cout << "Фильтрованный список:" << std::endl;
 	showCars(filteredCars);
 }
 
 void ConsoleInterface::showAvailableCars()
 {
-	std::cout << "Список доступных автомобилей:" << std::endl;
-	showCars(Shop.getAvailableCars());
+	std::cout << "Список доступных автомобилей:" << std::endl << std::endl;
+	showCars(Shop->getAvailableCars());
 }
 
 void ConsoleInterface::buyCar()
 {
 	int carId;
 	std::shared_ptr<Car> curCar;
+	showCars(Shop->getAvailableCars());
 	std::cout << "Введите ID автомобиля который хотите купить:";
 	std::cin >> carId;
-	curCar = Shop.sellCar(carId);
-	buyer.addPurchasedCar(curCar);
+	curCar = Shop->sellCar(carId);
+	buyer->addPurchasedCar(curCar);
 }
 
 void ConsoleInterface::showOwnedCars()
 {
 	std::cout << "Список приобретённых автомобилей:" << std::endl;
-	showCars(buyer.getOwnedCars());
+	showCars(buyer->getOwnedCars());
 }
 
 
-void showCars(std::vector<std::shared_ptr<Car>> cars)
-{
-	for (const auto& car : cars)
-	{
-		std::cout << *car;
-	}
-}

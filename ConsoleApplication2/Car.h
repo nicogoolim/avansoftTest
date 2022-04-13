@@ -31,3 +31,4 @@ public:
 
 
 std::ostream& operator<<(std::ostream& os, Car car);
+void showCars(std::vector<std::shared_ptr<Car>>);

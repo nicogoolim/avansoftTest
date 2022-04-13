@@ -2,24 +2,23 @@
 #include "DealerShip.h"
 #include "Buyer.h"
 #include <map>
-
+#include <functional>
 
 
 class ConsoleInterface
 {
 private:
-	Dealership Shop;
-	Buyer buyer;
-	
+	std::shared_ptr<Dealership> Shop;
+	std::shared_ptr<Buyer> buyer;
 
 public:
-	ConsoleInterface(Dealership shop, Buyer buyer);
+	ConsoleInterface(std::shared_ptr<Dealership> shop, std::shared_ptr<Buyer> buyer);
 	void start();
 	void help();
 	void showAvailableCars();
 	void filterCars();
 	void buyCar();
 	void showOwnedCars();
+	
 };
 
-void showCars(std::vector<std::shared_ptr<Car>>);
