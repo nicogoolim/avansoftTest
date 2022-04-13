@@ -3,11 +3,11 @@
 
 struct Brands
 {
-	 std::vector<std::string> BrandsBank = {"BMW", "Audi", "Mercedes", "Skoda"};
+	 std::vector<std::string> BrandsBank = {"BMW", "Audi", "Opel", "Skoda"};
 };
 struct Colors
 {
-	std::vector<std::string> ColorsBank = { "red","green","blue","black" };
+	std::vector<std::string> ColorsBank = { "Красный","Зелёный","Синий","Чёрный" };
 };
 
 class Car
@@ -23,10 +23,10 @@ public:
 	{
 		Brands Brand;
 		Colors Color;
-		id = CarId;
+		id = CarId;	
 		brand = Brand.BrandsBank[rand() % Brand.BrandsBank.size()];
 		color = Color.ColorsBank[rand() % Color.ColorsBank.size()];
-		price = 1000000 + rand() % 1000000;
+		price = 10000 +rand();
 	}
 	
 	int getId() const { return id; }
@@ -37,5 +37,6 @@ public:
 };
 std::ostream& operator<<(std::ostream& os, Car car)
 {
-	return os << "Номер автомобиля: " << car.getId() << "\tБренд автомобиля: " << car.getBrand() << std::endl;
+	return os << "Номер автомобиля: " << car.getId() << "\tБренд автомобиля: " << car.getBrand()
+	<<"\t Цена: " <<car.getPrice()<<"$" << "\tЦвет: " << car.getColor() << std::endl;
 }
