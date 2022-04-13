@@ -13,6 +13,6 @@ private:
 public:
 	Buyer(std::string name): name(name) {};
 	void addPurchasedCar(std::shared_ptr<Car> purchasedCar);
-
 	void showOwnedCars() const;
+	std::vector<std::shared_ptr<Car>> getOwnedCars() { return ownedCars; };
 };

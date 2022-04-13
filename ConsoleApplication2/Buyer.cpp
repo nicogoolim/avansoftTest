@@ -4,17 +4,17 @@
 
 void Buyer::addPurchasedCar(std::shared_ptr<Car> purchasedCar)
 {
-	ownedCars.push_back(purchasedCar);
+	ownedCars.emplace_back(purchasedCar);
 }
-
+	
 void Buyer::showOwnedCars() const
 {
-	if (ownedCars.size() != 0)
+	if (!ownedCars.empty())
 	{
 		std::cout << "В вашем владении:" << std::endl;
-		for (int i = 0; i < ownedCars.size(); i++)
+		for (const auto& car: ownedCars)
 		{
-			std::cout << *ownedCars[i];
+			std::cout << *car;
 		}
 	}
 	else

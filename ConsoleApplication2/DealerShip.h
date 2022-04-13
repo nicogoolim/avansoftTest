@@ -15,4 +15,5 @@ public:
 	std::vector<std::shared_ptr<Car>> filterAvailableCarsByBrand(std::string Brand)	const;
 	void showFilteredCars(std::vector<std::shared_ptr<Car>> filteredCars) const;
 	std::shared_ptr<Car> sellCar(int CarId);
+	std::vector<std::shared_ptr<Car>> getAvailableCars() { return availableCars; };
 };

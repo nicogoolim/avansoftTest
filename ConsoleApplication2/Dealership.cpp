@@ -5,28 +5,28 @@
 Dealership::Dealership()
 {
 	
-		for (int i = 0; i < 10; i++)
-		{
-			availableCars.push_back(std::shared_ptr<Car>(new Car(i + 1)));
-		}
+	for (int i = 0; i < 10; i++)
+	{
+		availableCars.push_back(std::shared_ptr<Car>(new Car(i + 1)));
+	}
 	
 }
 void Dealership::showAvailableCars() const
 {
-		for (int i = 0; i < availableCars.size(); i++)
-		{
-			std::cout << *availableCars[i];
-		}
+	for (const auto& car : availableCars)
+	{
+		std::cout << *car;
+	}
 }
 
 std::vector<std::shared_ptr<Car>> Dealership::filterAvailableCarsByPrice(int price) const
 {
 	std::vector<std::shared_ptr<Car>> filteredCars;
-	for (int i = 0; i < availableCars.size(); i++)
+	for (const auto& car: availableCars)
 	{
-		if (availableCars[i]->getPrice() < price)
+		if (car->getPrice() < price)
 		{
-			filteredCars.push_back(availableCars[i]);
+			filteredCars.push_back(car);
 		}
 	}
 	return filteredCars;
@@ -35,11 +35,11 @@ std::vector<std::shared_ptr<Car>> Dealership::filterAvailableCarsByPrice(int pri
 std::vector<std::shared_ptr<Car>> Dealership::filterAvailableCarsByBrand(std::string Brand) const
 {
 	std::vector<std::shared_ptr<Car>> filteredCars;
-	for (int i = 0; i < availableCars.size(); i++)
+	for (const auto& car : availableCars)
 	{
-		if (availableCars[i]->getBrand() == Brand)
+		if (car->getBrand() == Brand)
 		{
-			filteredCars.push_back(availableCars[i]);
+			filteredCars.push_back(car);
 		}
 	}
 	return filteredCars;
@@ -50,9 +50,9 @@ void Dealership::showFilteredCars(std::vector<std::shared_ptr<Car>> filteredCars
 	if (!filteredCars.empty())
 	{
 		std::cout << "Список отфильтрованных авто:" << std::endl;
-		for (int i = 0; i < filteredCars.size(); i++)
+		for(const auto& car: filteredCars)
 		{
-			std::cout << *filteredCars[i];
+			std::cout << *car;
 		}
 	}
 	else

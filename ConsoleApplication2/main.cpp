@@ -1,7 +1,4 @@
-﻿#include <iostream>
-#include <vector>
-#include <string>
-#include <memory>
+﻿
 #include "Car.h"
 #include "Buyer.h"
 #include "DealerShip.h"
@@ -13,7 +10,6 @@ int main()
 	
 	Dealership Shop;
 
-	Buyer b("Игорь");
+	Buyer Buyer("Игорь");
 
-	Shop.showAvailableCars();
 }
