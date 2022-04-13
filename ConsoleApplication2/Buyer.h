@@ -1,5 +1,9 @@
 #pragma once
-
+#include <memory>
+#include <string>
+#include <vector>
+#include "Car.h"
+#include <iostream>
 class Buyer
 {
 private:
@@ -8,24 +12,7 @@ private:
 
 public:
 	Buyer(std::string name): name(name) {};
-	void addPurchasedCar(std::shared_ptr<Car> purchasedCar)
-	{
-		ownedCars.push_back(purchasedCar);
-	}
+	void addPurchasedCar(std::shared_ptr<Car> purchasedCar);
 
-	void showOwnedCars() const
-	{
-		if (ownedCars.size() != 0)
-		{
-			std::cout << "В вашем владении:" << std::endl;
-			for (int i = 0; i < ownedCars.size(); i++)
-			{
-				std::cout << *ownedCars[i];
-			}
-		}
-		else
-		{
-			std::cout << "У вас пока что нет машин." << std::endl;
-		}
-	}
+	void showOwnedCars() const;
 };

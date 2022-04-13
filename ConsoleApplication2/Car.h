@@ -1,5 +1,7 @@
 #pragma once
-
+#include <string>
+#include <vector>
+#include <iostream>
 
 struct Brands
 {
@@ -19,24 +21,13 @@ private:
 	int price;
 
 public:
-	Car(int CarId)
-	{
-		Brands Brand;
-		Colors Color;
-		id = CarId;	
-		brand = Brand.BrandsBank[rand() % Brand.BrandsBank.size()];
-		color = Color.ColorsBank[rand() % Color.ColorsBank.size()];
-		price = 10000 +rand();
-	}
-	
+	Car(int CarId);
 	int getId() const { return id; }
 	std::string getBrand() const { return brand; }
 	std::string getColor() const { return color; }
 	int getPrice() const { return price; }
 
 };
-std::ostream& operator<<(std::ostream& os, Car car)
-{
-	return os << "Номер автомобиля: " << car.getId() << "\tБренд автомобиля: " << car.getBrand()
-	<<"\t Цена: " <<car.getPrice()<<"$" << "\tЦвет: " << car.getColor() << std::endl;
-}
+
+
+std::ostream& operator<<(std::ostream& os, Car car);

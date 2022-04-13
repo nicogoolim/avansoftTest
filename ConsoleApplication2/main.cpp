@@ -7,11 +7,13 @@
 #include "DealerShip.h"
 
 
-
 int main()
 {
 	setlocale(LC_ALL, "rus");
+	
 	Dealership Shop;
 
-	Shop.showFilteredCars(Shop.filterAvailableCarsByBrand("BMW"));
+	Buyer b("Игорь");
+
+	Shop.showAvailableCars();
 }
