@@ -2,7 +2,6 @@
 #include "Car.h"
 #include "Buyer.h"
 #include "DealerShip.h"
-#include "Filter.h"
 #include "ConsoleInterface.h"
 int main()
 {

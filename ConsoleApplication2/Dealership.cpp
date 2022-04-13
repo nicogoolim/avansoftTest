@@ -7,7 +7,7 @@ Dealership::Dealership()
 	
 	for (int i = 0; i < 10; i++)
 	{
-			availableCars.push_back(std::shared_ptr<Car>(new Car(i + 1)));
+			availableCars.push_back(std::make_shared<Car>(i+1));
 	}
 	
 }
