@@ -6,6 +6,7 @@ std::ostream& operator<<(std::ostream& os, Car car)
 }
 Car::Car(int CarId)
 {
+
 	auto Brand = std::make_shared<Brands>();
 	auto Color = std::make_shared<Colors>();
 	id = CarId;

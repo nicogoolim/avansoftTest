@@ -5,9 +5,7 @@ ConsoleInterface::ConsoleInterface(std::shared_ptr<Dealership> shop, std::shared
 {
 	this->Shop = shop;
 	this->buyer = buyer;
-	
 }
-
 
 
 bool isNumber(const std::string& str)
